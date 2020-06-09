@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import numpy as np
+sns.set(style="ticks")
+data = pd.read_excel('COVID-19.xlsx', sheet_name='Timeline')
+grid = sns.FacetGrid(data, col="Bali", hue="Bali", palette="tab20c",col_wrap=4, height=1.5)
+grid.map(plt.axhline, y=0, ls=":", c=".5")
+grid.map(plt.plot, "Bali", "position", marker="o")
+grid.set(xticks=np.arange(5), yticks=[-3, 3],xlim=(-.5, 4.5), ylim=(-3.5, 3.5))
+grid.fig.tight_layout(w_pad=1)
